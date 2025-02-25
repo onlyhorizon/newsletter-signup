@@ -26,7 +26,7 @@ main {
 	background-color: var(--white);
 	max-width: 904px;
 	border-radius: 36px;
-	padding: 32px;
+	padding: 16px 32px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
