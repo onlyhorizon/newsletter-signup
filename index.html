@@ -9,33 +9,70 @@
   <title>Frontend Mentor | Newsletter sign-up form with success message</title>
 </head>
 <body>
+  <main>
+    <form>
+      <h1>Stay updated!</h1>
 
-  <!-- Sign-up form start -->
+      <p>Join 60,000+ product managers receiving monthly updates on:</p>
 
-  Stay updated!
+      <ul>
+        <li>Product discovery and building what matters</li>
+        <li>Measuring to ensure updates are a success</li>
+        <li>And much more!</li>
+      </ul>
 
-  Join 60,000+ product managers receiving monthly updates on:
+      <form>
+       <div id="flex-label"> 
+        <label>Email address</label>
+        <label id="valid-email" class="dnone">Valid email required</label>
+      </div><!-- flex-label -->
+      <input type="text" placeholder="email@company.com" id="email-input">
 
-  Product discovery and building what matters
-  Measuring to ensure updates are a success
-  And much more!
+      <button type="button" onclick="validateEmail()" id="subscribe">Subscribe to monthly newsletter</button>
+    </form>
 
-  Email address
-  email@company.com
+    <picture>
+      <source srcset="assets/images/illustration-sign-up-desktop.svg" media="(min-width: 768px)">
+        <img src="assets/images/illustration-sign-up-mobile.svg" alt="Illustration">
+      </picture>
+    </main>
 
-  Subscribe to monthly newsletter
+    <subscribed class="dnone">
+      <img src="assets/images/icon-success.svg" alt="Icon Success" width="64">
+      <h2>Thanks for subscribing!</h2>
 
-  <!-- Sign-up form end -->
+      <p>A confirmation email has been sent to <strong id="show-email"></strong>. Please open it and click the button inside to confirm your subscription.</p>
 
-  <!-- Success message start -->
+      <button type="button" id="dismiss">Dismiss message</button>
+    </subscribed>
+  </body>
+  <script>
+    document.getElementById("email-input")
+    .addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+        document.getElementById("subscribe").click();
+      }
+    });
 
-  Thanks for subscribing!
-
-  A confirmation email has been sent to ash@loremcompany.com. 
-  Please open it and click the button inside to confirm your subscription.
-
-  Dismiss message
-
-  <!-- Success message end -->
-</body>
-</html>
+    function validateEmail() {
+      var validRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const inputEmail = document.getElementById('email-input');
+      const email = document.getElementById("email-input").value;
+      const error = document.getElementById('valid-email');
+      const showEmail = document.getElementById('show-email');
+      const main = document.querySelector("main");
+      const subscribed = document.querySelector("subscribed");
+      console.log(email)
+      if (email.match(validRegex)) {
+        console.log(email)
+        showEmail.innerHTML = email;
+        main.classList.add("dnone")
+        subscribed.classList.add("dblock")
+      } else {
+        inputEmail.classList.add("invalid")
+        error.classList.add("dblock")
+      }
+    }
+  </script>
+  </html>
